@@ -1,10 +1,12 @@
 import { IndicatingPoint } from '@/components/Help/IndicatingPoint';
+import { useCollision } from '@/hooks/collision';
 import { Point } from '@/types/point';
 import { createCollisioner } from '@/utils/collision';
 import { movePoints } from '@/utils/point';
 import { ProForm, useDeepCompareEffect } from '@ant-design/pro-components';
 import { useSetState } from 'ahooks';
 import { Form, InputNumber } from 'antd';
+import { useEffect } from 'react';
 import { useDeepCompareMemo } from 'use-deep-compare';
 import styles from './index.less';
 
@@ -51,6 +53,12 @@ export default function Page() {
   useDeepCompareEffect(() => {
     onMove(points.poly1, points.poly2);
   }, [points]);
+
+  const [isCollision] = useCollision(points.poly1, points.poly2);
+  useEffect(() => {
+    console.log({ isCollision });
+  }, [isCollision]);
+
   // onMove(points.poly1, points.poly2);
   return (
     <>
