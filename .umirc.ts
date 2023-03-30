@@ -21,5 +21,8 @@ export default defineConfig({
     },
   ],
   npmClient: 'yarn',
+  verifyCommit: {
+    scope: ['feat', 'fix'],
+    allowEmoji: true,
+  },
 });
-
